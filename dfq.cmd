@@ -1,1 +1,1 @@
-@node "%~dp0replacexml.js" %*
+@node "%~dp0dfq.js" %*
