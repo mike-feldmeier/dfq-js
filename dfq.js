@@ -8,7 +8,7 @@ const self = JSON.parse(await fsp.readFile('./package.json'))
 import { count } from './commands/count.js'
 import { sample } from './commands/sample.js'
 import { distinctDelim, distinctFixed } from './commands/distinct.js'
-import { filterDelim, distinctFixed } from './commands/filter.js'
+import { filterDelim, filterFixed } from './commands/filter.js'
 
 program
   .name(self.name)
