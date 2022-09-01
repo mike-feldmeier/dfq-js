@@ -1,0 +1,29 @@
+{
+  "name": "dfq-js",
+  "description": "Library for querying fixed-width or delimited data files from the CLI or Node.js",
+  "version": "1.0.0",
+  "preferGlobal": true,
+  "homepage": "https://github.com/mike-feldmeier/dfq-js",
+  "bugs": "https://github.com/mike-feldmeier/dfq-js/issues",
+  "author": "Mike Feldmeier <mike.feldmeier@gmail.com> (http://www.mikefeldmeier.com)",
+  "license": "MIT",
+  "keywords": ["fixed-width", "delimited", "cli", "query"],
+  "bin": {
+    "dfq": "dfq.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mike-feldmeier/dfq-js.git"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "dependencies": {
+    "commander": "^9.4.0",
+    "line-reader": "^0.4.0"
+  },
+  "devDependencies": {
+    "jest": "^28.1.3"
+  }
+}
