@@ -3,7 +3,7 @@
 import { Argument, program } from 'commander'
 import fsp from 'fs/promises'
 
-const self = JSON.parse(await fsp.readFile('./package.json'))
+const self = JSON.parse(await fsp.readFile(new URL('./package.json', import.meta.url)))
 
 import { count } from './commands/count.js'
 import { sample } from './commands/sample.js'
