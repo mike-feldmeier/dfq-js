@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { Argument, program } from 'commander'
 import fsp from 'fs/promises'
 
