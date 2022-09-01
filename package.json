@@ -1,5 +1,5 @@
 {
-  "name": "dfq-js",
+  "name": "dfq",
   "description": "Library for querying fixed-width or delimited data files from the CLI or Node.js",
   "version": "1.0.0",
   "preferGlobal": true,
