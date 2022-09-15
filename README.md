@@ -56,10 +56,9 @@ Line 3...
 
 ```
 > dfq filter sample.txt --key xyz --begin 10 --end 15
-2
-3
-5
-11
+Line 1...
+Line 8...
+Line 9...
 ```
 
 ## Node.js Functions
