@@ -7,7 +7,7 @@ const count = async (filename) => {
   let lineCount = 0
 
   try {
-    await eachLine(filename, line => ++lineCount)
+    await eachLine(filename, _ => ++lineCount)
   }
   catch(err) {
     if(err.code === 'ENOENT') {

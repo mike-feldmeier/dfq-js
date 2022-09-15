@@ -7,7 +7,7 @@ const eachLine = util.promisify(lineReader.eachLine)
 const distinctDelim = async (filename, index, delimiter, qualifier) => {
   const result = []
 
-  if(!Number.isInteger(index) || index < 0) {
+  if(isNaN(parseInt(index)) || parseInt(index) < 0) {
     throw new Error(`The given index of "${index}" does not resolve to a positive natural integer`)
   }
 
@@ -34,11 +34,11 @@ const distinctDelim = async (filename, index, delimiter, qualifier) => {
 const distinctFixed = async (filename, begin, end) => {
   const result = []
 
-  if(!Number.isInteger(begin)) {
+  if(isNaN(parseInt(begin))) {
     throw new Error(`The given beginning index of "${begin}" does not resolve to a integer`)
   }
 
-  if(end && !Number.isInteger(end)) {
+  if(end !== undefined && isNaN(parseInt(end))) {
     throw new Error(`The given beginning index of "${end}" does not resolve to a integer`)
   }
 

@@ -7,11 +7,11 @@ const sample = async (filename, offset=0, length=10) => {
   const result = []
   let lineCount = 0
 
-  if(offset < 0) {
+  if(isNaN(parseInt(offset)) || offset < 0) {
     throw new Error(`The given offset of "${offset}" does not resolve to a positive integer`)
   }
 
-  if(length < 1) {
+  if(isNaN(parseInt(length)) || length < 1) {
     throw new Error(`The given length of "${length}" does not resolve to a positive natural integer`)
   }
 

@@ -7,7 +7,12 @@
   "bugs": "https://github.com/mike-feldmeier/dfq-js/issues",
   "author": "Mike Feldmeier <mike.feldmeier@gmail.com> (http://www.mikefeldmeier.com)",
   "license": "MIT",
-  "keywords": ["fixed-width", "delimited", "cli", "query"],
+  "keywords": [
+    "fixed-width",
+    "delimited",
+    "cli",
+    "query"
+  ],
   "bin": {
     "dfq": "dfq.js"
   },

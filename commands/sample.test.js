@@ -5,9 +5,19 @@ describe('sample', () => {
     const result = await sample('./testing/sample.txt', 0, 3)
     expect(result).toHaveLength(3)
   })
-  
+
+  test('samples the number of rows in a fixed-width file with a string index', async () => {
+    const result = await sample('./testing/sample.txt', '0', '3')
+    expect(result).toHaveLength(3)
+  })
+
   test('samples the number of rows in a delimited file', async () => {
     const result = await sample('./testing/sample.csv', 0, 3)
+    expect(result).toHaveLength(3)
+  })
+  
+  test('samples the number of rows in a delimited file with a string index', async () => {
+    const result = await sample('./testing/sample.csv', '0', '3')
     expect(result).toHaveLength(3)
   })
   

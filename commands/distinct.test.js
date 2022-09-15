@@ -8,6 +8,12 @@ describe('distinctDelim', () => {
     expect(result).toEqual(expect.arrayContaining(['Storage & Organization', 'Appliances', 'Binders and Binder Accessories', 'Telephones and Communication', 'Office Furnishings', 'Paper']))
   })
 
+  test('correctly determines distinct values in a delimited file with string index', async () => {
+    const result = await distinctDelim('./testing/sample.csv', '8')
+    expect(result).toHaveLength(6)
+    expect(result).toEqual(expect.arrayContaining(['Storage & Organization', 'Appliances', 'Binders and Binder Accessories', 'Telephones and Communication', 'Office Furnishings', 'Paper']))
+  })
+
   test('fails gracefully when index is invalid in a delimited file', async () => {
     expect.assertions(1)
     return distinctDelim('./testing/sample.csv', 'a', 0).catch(err => expect(err.message).toMatch(/a positive natural integer/))
@@ -33,8 +39,20 @@ describe('distinctFixed', () => {
     expect(result).toEqual(expect.arrayContaining(['Yes', 'No']))
   })
 
+  test('correctly determines distinct values in a fixed-width file with a string index', async () => {
+    const result = await distinctFixed('./testing/sample.txt', '69', '72')
+    expect(result).toHaveLength(2)
+    expect(result).toEqual(expect.arrayContaining(['Yes', 'No']))
+  })
+
   test('correctly uses negative values in a fixed-width file', async () => {
     const result = await distinctFixed('./testing/sample.txt', -4)
+    expect(result).toHaveLength(2)
+    expect(result).toEqual(expect.arrayContaining(['Yes', 'No']))
+  })
+
+  test('correctly uses negative values in a fixed-width file with a string index', async () => {
+    const result = await distinctFixed('./testing/sample.txt', '-4')
     expect(result).toHaveLength(2)
     expect(result).toEqual(expect.arrayContaining(['Yes', 'No']))
   })
