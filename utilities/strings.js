@@ -39,4 +39,6 @@ const parseDelimitedLine = (line, delimiter, qualifier) => {
   return result
 }
 
-export { extractDelimValue, extractFixedValue }
+const prepareNumber = s => s.split(',').join('')
+
+export { extractDelimValue, extractFixedValue, prepareNumber }

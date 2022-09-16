@@ -55,12 +55,12 @@ describe('filterFixed', () => {
 
   test('fails gracefully when begin is invalid', async () => {
     expect.assertions(1)
-    return filterFixed('./testing/sample.txt', 'No', '').catch(err => expect(err.message).toMatch(/a integer/))
+    return filterFixed('./testing/sample.txt', 'No', '').catch(err => expect(err.message).toMatch(/an integer/))
   })
 
   test('fails gracefully when end is invalid', async () => {
     expect.assertions(1)
-    return filterFixed('./testing/sample.txt', 'No', 1, '').catch(err => expect(err.message).toMatch(/a integer/))
+    return filterFixed('./testing/sample.txt', 'No', 1, '').catch(err => expect(err.message).toMatch(/an integer/))
   })
 
   test('fails gracefully when the file doesn\'t exist', async () => {

@@ -9,6 +9,7 @@ import { count } from './commands/count.js'
 import { sample } from './commands/sample.js'
 import { distinctDelim, distinctFixed } from './commands/distinct.js'
 import { filterDelim, filterFixed } from './commands/filter.js'
+import { sumDelim, sumFixed } from './commands/sum.js'
 
 import { unrollTo } from './utilities/arrays.js'
 
@@ -22,6 +23,29 @@ program
   .argument('<source>', 'Source file to read')
   .description('Counts the number of rows in the given source file')
   .action(async (source) => { console.log(await count(source)) })
+
+ program
+  .command('sum')
+  .addArgument(new Argument('<type>', 'Type of file').choices(['delim', 'fixed']))
+  .argument('<source>', 'Source file to read')
+  .description('Sums all values from the given column')
+  .option('--begin <n>')
+  .option('--end <n>')
+  .option('--index <n>')
+  .option('--delimiter <string>', 'The delimiter to use for separating values', ',')
+  .option('--qualifier <string>', 'The qualifier to use for containing values', '"')
+  .action(async (type, source, options) => {
+    switch(type) {
+      case 'delim':
+        console.log(await sumDelim(source, options.index, options.delimiter, options.qualifier))
+        break
+      case 'fixed':
+        console.log(await sumFixed(source, options.begin, options.end))
+        break
+      default:
+        throw new Error(`Unknown type "${type}" given`)
+    }
+  })
 
 program
   .command('sample')

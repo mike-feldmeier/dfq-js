@@ -35,11 +35,11 @@ const distinctFixed = async (filename, begin, end) => {
   const result = []
 
   if(isNaN(parseInt(begin))) {
-    throw new Error(`The given beginning index of "${begin}" does not resolve to a integer`)
+    throw new Error(`The given beginning index of "${begin}" does not resolve to an integer`)
   }
 
   if(end !== undefined && isNaN(parseInt(end))) {
-    throw new Error(`The given beginning index of "${end}" does not resolve to a integer`)
+    throw new Error(`The given beginning index of "${end}" does not resolve to an integer`)
   }
 
   try {

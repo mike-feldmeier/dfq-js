@@ -39,7 +39,7 @@ Line 3...
 *Output a list of distinct values in the given position*
 
 ```
-> dfq distinct sample.txt --begin 10 --end 15
+> dfq distinct fixed sample.txt --begin 10 --end 15
 2
 3
 5
@@ -55,10 +55,23 @@ Line 3...
 *Output lines where the given key is found within the given range*
 
 ```
-> dfq filter sample.txt --key xyz --begin 10 --end 15
+> dfq filter fixed sample.txt --key xyz --begin 10 --end 15
 Line 1...
 Line 8...
 Line 9...
+```
+
+### sum
+
+```sum fixed <source> [--begin <n=0>] [--end <n=EOL>]```
+
+```sum delim <source> [--index <n>] [--delimiter <s=,>] [--qualifier <s=">]```
+
+*Output the sum of values in the given position*
+
+```
+> dfq sum fixed sample.txt --begin 10 --end 15
+5178.52
 ```
 
 ## Node.js Functions
@@ -66,7 +79,7 @@ Line 9...
 Most, if not all, of the above functionality is available directly through Node.js.
 
 ```javascript
-import { count, sample, distinctDelim, distinctFixed, filterDelim, filterFixed } from 'dfq/commands'
+import { count, sample, distinctDelim, distinctFixed, filterDelim, filterFixed, sumDelim, sumFixed } from 'dfq/commands'
 
 const length = await count(filename)
 const rows = await sample(filename, offset, length)
@@ -74,4 +87,6 @@ const dinstinctValues = await distinctDelim(filename, index, delimiter, qualifie
 const dinstinctValues2 = await distinctFixed(filename, begin, end)
 const matchingRows = await filterDelim(filename, key, index, delimiter, qualifier)
 const matchingRows2 = await filterFixed(filename, key, begin, end)
+const total = await sumDelim(filename, key, index, delimiter, qualifier)
+const total2 = await sumFixed(filename, key, begin, end)
 ```

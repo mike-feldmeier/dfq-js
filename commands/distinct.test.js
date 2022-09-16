@@ -59,12 +59,12 @@ describe('distinctFixed', () => {
 
   test('fails gracefully when begin is invalid', async () => {
     expect.assertions(1)
-    return distinctFixed('./testing/sample.txt', 'a', 0).catch(err => expect(err.message).toMatch(/a integer/))
+    return distinctFixed('./testing/sample.txt', 'a', 0).catch(err => expect(err.message).toMatch(/an integer/))
   })
 
   test('fails gracefully when end is invalid', async () => {
     expect.assertions(1)
-    return distinctFixed('./testing/sample.txt', 0, 'z').catch(err => expect(err.message).toMatch(/a integer/))
+    return distinctFixed('./testing/sample.txt', 0, 'z').catch(err => expect(err.message).toMatch(/an integer/))
   })
 
   test('fails gracefully when the file doesn\'t exist', async () => {
