@@ -10,6 +10,8 @@ import { sample } from './commands/sample.js'
 import { distinctDelim, distinctFixed } from './commands/distinct.js'
 import { filterDelim, filterFixed } from './commands/filter.js'
 
+import { unrollTo } from './utilities/arrays.js'
+
 program
   .name(self.name)
   .description(self.description)
@@ -27,7 +29,7 @@ program
   .description('Returns a sample of rows from the given source file')
   .option('--offset <n>', 'Begins reading at the given line number', 0)
   .option('--length <n>', 'Returns the given number of rows', 10)
-  .action(async (source, options) => { console.log((await sample(source, options.offset, options.length)).join('\n')) })
+  .action(async (source, options) => { unrollTo((await sample(source, options.offset, options.length)), console.log) })
 
 program
   .command('distinct')
@@ -42,10 +44,10 @@ program
   .action(async (type, source, options) => {
     switch(type) {
       case 'delim':
-        console.log((await distinctDelim(source, options.index, options.delimiter, options.qualifier)).join('\n'))
+        unrollTo((await distinctDelim(source, options.index, options.delimiter, options.qualifier)), console.log)
         break
       case 'fixed':
-        console.log((await distinctFixed(source, options.begin, options.end)).join('\n'))
+        unrollTo((await distinctFixed(source, options.begin, options.end)), console.log)
         break
       default:
         throw new Error(`Unknown type "${type}" given`)
@@ -66,10 +68,10 @@ program
   .action(async (type, source, options) => { 
     switch(type) {
       case 'delim':
-        console.log((await filterDelim(source, options.key, options.index, options.delimiter, options.qualifier)).join('\n'))
+        unrollTo((await filterDelim(source, options.key, options.index, options.delimiter, options.qualifier)), console.log)
         break
       case 'fixed':
-        console.log((await filterFixed(source, options.key, options.begin, options.end)).join('\n'))
+        unrollTo((await filterFixed(source, options.key, options.begin, options.end)), console.log)
         break
       default:
         throw new Error(`Unknown type "${type}" given`)
