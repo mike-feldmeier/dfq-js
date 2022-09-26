@@ -7,6 +7,7 @@ const self = JSON.parse(await fsp.readFile(new URL('./package.json', import.meta
 
 import { count } from './commands/count.js'
 import { sample } from './commands/sample.js'
+import { extractDelim, extractFixed } from './commands/extract.js'
 import { distinctDelim, distinctFixed } from './commands/distinct.js'
 import { filterDelim, filterFixed } from './commands/filter.js'
 import { sumDelim, sumFixed } from './commands/sum.js'
@@ -54,6 +55,29 @@ program
   .option('--offset <n>', 'Begins reading at the given line number', 0)
   .option('--length <n>', 'Returns the given number of rows', 10)
   .action(async (source, options) => { unrollTo((await sample(source, options.offset, options.length)), console.log) })
+
+program
+  .command('extract')
+  .addArgument(new Argument('<type>', 'Type of file').choices(['delim', 'fixed']))
+  .argument('<source>', 'Source file to read')
+  .description('Output a sample of columns from the given source file')
+  .option('--begin <n>')
+  .option('--end <n>')
+  .option('--index <n>')
+  .option('--delimiter <string>', 'The delimiter to use for separating values', ',')
+  .option('--qualifier <string>', 'The qualifier to use for containing values', '"')
+  .action(async (type, source, options) => {
+    switch(type) {
+      case 'delim':
+        unrollTo((await extractDelim(source, options.index, options.delimiter, options.qualifier)), console.log)
+        break
+      case 'fixed':
+        unrollTo((await extractFixed(source, options.begin, options.end)), console.log)
+        break
+      default:
+        throw new Error(`Unknown type "${type}" given`)
+    }
+  })
 
 program
   .command('distinct')

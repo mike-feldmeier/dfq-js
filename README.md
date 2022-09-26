@@ -30,6 +30,21 @@ Line 2...
 Line 3...
 ```
 
+### extract
+
+```extract fixed [--begin <n=0>] [--end <n=EOL>]```
+
+```extract delim [--index <n>] [--delimiter <s=,>] [--qualifier <s=">]```
+
+*Returns a sample of columns in the source*
+
+```
+> dfq extract fixed sample.txt --begin 10 --end 15
+Column 2 (Line 1)...
+Column 2 (Line 2)...
+Column 2 (Line 3)...
+```
+
 ### distinct
 
 ```distinct fixed <source> [--begin <n=0>] [--end <n=EOL>]```
@@ -79,10 +94,12 @@ Line 9...
 Most, if not all, of the above functionality is available directly through Node.js.
 
 ```javascript
-import { count, sample, distinctDelim, distinctFixed, filterDelim, filterFixed, sumDelim, sumFixed } from 'dfq/commands'
+import { count, sample, extractDelim, extractFixed, distinctDelim, distinctFixed, filterDelim, filterFixed, sumDelim, sumFixed } from 'dfq/commands'
 
 const length = await count(filename)
 const rows = await sample(filename, offset, length)
+const extractValues = await extractDelim(filename, index, delimiter, qualifier)
+const extractValues2 = await extractFixed(filename, begin, end)
 const dinstinctValues = await distinctDelim(filename, index, delimiter, qualifier)
 const dinstinctValues2 = await distinctFixed(filename, begin, end)
 const matchingRows = await filterDelim(filename, key, index, delimiter, qualifier)
